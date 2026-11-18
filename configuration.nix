@@ -107,28 +107,32 @@
   	};
   };
 
-  # Enable jellyfin autostart on this computer.
-  systemd.services.jellyfin = {
-    description = "Jellyfin Media Server";
-  
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
-  
-    serviceConfig = {
-      Type = "simple";
-      User = "jeremiah";
-      Restart = "on-failure";
-      RestartSec = "5s";
-  
-      ExecStart = ''
-        /run/current-system/sw/bin/jellyfin \
-          -c /home/jeremiah/jellyfin/config \
-          -d /home/jeremiah/jellyfin/data \
-          -C /home/jeremiah/jellyfin/cache \
-          -l /home/jeremiah/jellyfin/log
-      '';
-    };
+  services.jellyfin = {
+  	enable = true;
+  	openFirewall = true;
   };
+  ## Enable jellyfin autostart on this computer.
+  #systemd.services.jellyfin = {
+  #  description = "Jellyfin Media Server";
+  #
+  #  wantedBy = [ "multi-user.target" ];
+  #  after = [ "network.target" ];
+  #
+  #  serviceConfig = {
+  #    Type = "simple";
+  #    User = "jeremiah";
+  #    Restart = "on-failure";
+  #    RestartSec = "5s";
+  #
+  #    ExecStart = ''
+  #      /run/current-system/sw/bin/jellyfin \
+  #        -c /home/jeremiah/jellyfin/config \
+  #        -d /home/jeremiah/jellyfin/data \
+  #        -C /home/jeremiah/jellyfin/cache \
+  #        -l /home/jeremiah/jellyfin/log
+  #    '';
+  #  };
+  #};
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 8096 ];
