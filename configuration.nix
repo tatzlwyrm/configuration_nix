@@ -109,6 +109,11 @@
 
   services.jellyfin = {
   	enable = true;
+
+	user = "jeremiah";
+	group = "users";
+	dataDir = "/srv/media";
+
   	openFirewall = true;
   };
   ## Enable jellyfin autostart on this computer.
