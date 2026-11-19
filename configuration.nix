@@ -82,6 +82,7 @@
     xmrig
     jellyfin
 	ffmpeg
+	handbrake
     ((emacsPackagesFor emacs).withPackages (epkgs: with epkgs;[
     	olivetti
     ]))
@@ -110,9 +111,9 @@
   services.jellyfin = {
   	enable = true;
 
-	user = "jeremiah";
-	group = "users";
-	dataDir = "/srv/media";
+	#user = "jeremiah";
+	#group = "users";
+	#dataDir = "/srv/media";
 
   	openFirewall = true;
   };
